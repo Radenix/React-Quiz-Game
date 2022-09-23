@@ -9,31 +9,45 @@ const Question = ({
   questions,
   setShowQuestionsPage,
   setShowFinalPage,
+  setShowStartingPage,
   score,
   setScore,
   health,
-  setHealth
+  setHealth,
+  answers,
+  setAnswers
 }) => {
-  const handleClick = (isCorrect) => {
+  const handleClick = (isCorrect, answerUser) => {
+
+    const answer = questions[questionIndex].answers.find(obj => {
+      return obj.correctAnswer === true
+    }).answerText
+
     if (questionIndex < 9) {
-        if(isCorrect){
+      setAnswers(old => [...old, {
+        question: questions[questionIndex].questionText,
+        answer: answer,
+        isCorrect: isCorrect,
+        userAnswer: answerUser
+      }])
+      if (isCorrect) {
         setScore((score) => (score += 10))
-        }
-        else{
-          setHealth((health) => (health -= 1));
-        }
+      }
+      else {
+        setHealth((health) => (health -= 1));
+      }
       setQuestionIndex((prevIndex) => prevIndex + 1);
-      if(health === 0){
+      if (health === 0) {
         setShowQuestionsPage(false)
         setShowFinalPage(true)
       }
     } else {
-    
-      if(isCorrect){
+
+      if (isCorrect) {
         setScore((score) => (score += 10))
-        }
-        setShowQuestionsPage(false)
-        setShowFinalPage(true)
+      }
+      setShowQuestionsPage(false)
+      setShowFinalPage(true)
     }
   };
 
@@ -46,7 +60,9 @@ const Question = ({
           <div
             key={i}
             className="answer"
-            onClick={() => handleClick(answer.correctAnswer)}
+            onClick={() => {
+              handleClick(answer.correctAnswer, questions[questionIndex].answers[i]);
+            }}
           >
             <p>{answer.answerText}</p>
           </div>
@@ -57,7 +73,7 @@ const Question = ({
         Skor: <span>{score}</span>
       </p>
 
-      <p className="health"><FavoriteIcon style={{fontSize: "medium", position: "relative", top: "2px"}}/> : <span style={{color:"red"}}>{health}</span></p>
+      <p className="health"><FavoriteIcon style={{ fontSize: "medium", position: "relative", top: "2px" }} /> : <span style={{ color: "red" }}>{health}</span></p>
 
       <p className="question_number">
         Sual <span>{questionIndex + 1}</span>

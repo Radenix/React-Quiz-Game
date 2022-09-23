@@ -1,21 +1,34 @@
-.heading {
+.hheading {
     margin: 2rem 0 5rem 0;
   }
   
-  .primary_text,
-  .heading,
-  .final_score {
+  .pprimary_text{
+    position: relative;
+    top: -100px;
+    text-align: center;
+  }
+  .hheading{
+      position: relative;
+      top: -30px;
+      text-align: center;
+  }
+  .ffinal_score {
+    position: relative;
+    top: -100px;
     text-align: center;
   }
   
-  .play_again_btn {
+  .play_again_btn,
+  .see_questions {
     display: block;
-    margin: 5rem auto 0 auto;
+    position: relative;
+    top: -70px;
+    margin: 0 auto;
     outline: 0;
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    padding: 10px 1rem;
+    padding: 3px 1rem;
     letter-spacing: 2px;
     background-color: black;
     color: white;

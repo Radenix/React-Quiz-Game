@@ -12,6 +12,8 @@ const QuestionsPage = ({
   setHealth,
   setShowQuestionsPage,
   setShowFinalPage,
+  answers,
+  setAnswers
 }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
@@ -27,6 +29,8 @@ const QuestionsPage = ({
         setScore={setScore}
         health={health}
         setHealth={setHealth}
+        answers={answers}
+        setAnswers={setAnswers}
       />
     </>
   );

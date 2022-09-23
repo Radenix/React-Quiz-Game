@@ -10,6 +10,7 @@ function App() {
   const [topScore, setTopScore] = useState(0);
   const [health, setHealth] = useState(3);
 
+  const [answers, setAnswers] = useState([]);
   const [showHomePage, setShowHomePage] = useState(true)
   const [showStartingPage, setShowStartingPage] = useState(false);
   const [showQuestionsPage, setShowQuestionsPage] = useState(false);
@@ -17,14 +18,14 @@ function App() {
 
   return (
     <>
-    {showHomePage && (
-      <HomePage
-        setShowHomePage={setShowHomePage}
-        setShowStartingPage={setShowStartingPage}
-        health={health}
-        setHealth={setHealth}
-      />
-    )}
+      {showHomePage && (
+        <HomePage
+          setShowHomePage={setShowHomePage}
+          setShowStartingPage={setShowStartingPage}
+          health={health}
+          setHealth={setHealth}
+        />
+      )}
       {showStartingPage && (
         <StartingPage
           setShowStartingPage={setShowStartingPage}
@@ -58,6 +59,34 @@ function App() {
           setScore={setScore}
           username={username}
           setUsername={setUsername}
+        />
+      )}
+      {showQuestionsPage && (
+        <QuestionsPage
+          score={score}
+          setScore={setScore}
+          health={health}
+          setHealth={setHealth}
+          setShowQuestionsPage={setShowQuestionsPage}
+          setShowFinalPage={setShowFinalPage}
+          answers={answers}
+          setAnswers={setAnswers}
+        />
+      )}
+      {showFinalPage && (
+        <FinalPage
+          score={score}
+          topScore={topScore}
+          health={health}
+          setHealth={setHealth}
+          setTopScore={setTopScore}
+          setShowHomePage={setShowHomePage}
+          setShowFinalPage={setShowFinalPage}
+          setScore={setScore}
+          username={username}
+          setUsername={setUsername}
+          answers={answers}
+          setAnswers={setAnswers}
         />
       )}
     </>
