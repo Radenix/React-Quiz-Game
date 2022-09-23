@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Card from "./Card";
-
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 import "./FinalPage.css";
 
 const FinalPage = ({
@@ -47,13 +48,19 @@ const FinalPage = ({
       <button className="see_questions" onClick={revealAnswers}>Cavablara Bax</button>
 
       {answersShowen &&
-        <div id="answers" style={{position:"relative",top:"-40px"}}>
+        <div id="answers" style={{ position: "relative", top: "-40px", backgroundColor: "whitesmoke" }}>
+          <div className="answer-titles" style={{ display: "flex", gap: "390px" }}>
+            <h3>Sual:<hr /></h3>
+            <h3 style={{ position: "absolute", left: "435px" }}>Sizin verdiyiniz cavab:</h3>
+          </div>
           {answers.map(a => {
             return (
-              <div key={a.question}>
-                <h4>Sual: {a.question}</h4>
-                <h4>Doğru Cavab: {a.answer}</h4>
-                <h4>Sizin verdiyiniz cavab: {a.userAnswer.answerText}</h4>
+
+              <div key={a.question} style={{ display: "flex", gap: "236px" }}>
+
+                <h4 style={{ width: "200px", display: "flex", flexDirection: "column", marginBottom: "5px" }}>{a.question}<hr /></h4>
+
+                <h4 style={{ alignItems: 'center', display: 'flex' }}><span style={{ marginRight: '5px', marginBottom: '5px' }}>{a.userAnswer.answerText}</span>{a.isCorrect ? <CheckIcon style={{ color: "green" }} /> : <ClearIcon style={{ color: "red" }} />}</h4>
               </div>
             )
           })}
@@ -61,7 +68,7 @@ const FinalPage = ({
         </div>
       }
 
-      <button className="play_again_btn" onClick={handleClick} style={{position:"relative", top:"-29px"}}>
+      <button className="play_again_btn" onClick={handleClick} style={{ position: "relative", top: "-29px" }}>
         Yenidən Oyna
       </button>
     </Card>
